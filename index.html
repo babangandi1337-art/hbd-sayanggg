@@ -2,197 +2,273 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 21st B-DAY Dian Putri Apsari! 🎉</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Special Surprise for Dian! 🎉</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: pan-y; }
         
         body {
             font-family: 'Orbitron', sans-serif;
-            background: #0a0a0a;
-            background-image: 
-                radial-gradient(circle at 20% 80%, #ff00ff 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 50%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Overlay untuk memulai musik */
-        #overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
             background: #000;
-            z-index: 9999;
+            color: white;
+            overflow: hidden;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
         }
+
+        .vhs-effect::before {
+            content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+            pointer-events: none; z-index: 999;
+        }
+
+        .full-screen-layout {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 100; transition: opacity 0.8s ease, visibility 0.8s;
+            background: #000;
+        }
+        .hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
         #start-btn {
-            font-family: 'Press Start 2P', cursive;
-            padding: 20px;
-            background: #ffff00;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            box-shadow: 5px 5px 0px #ff00ff;
+            font-family: 'Press Start 2P', cursive; padding: 25px;
+            background: #ffff00; color: #000; border: none; cursor: pointer;
+            box-shadow: 8px 8px 0px #ff00ff; font-size: 14px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        #countdown-text {
+            font-family: 'Press Start 2P', cursive; font-size: 8rem;
+            color: #ffff00; text-shadow: 10px 10px #ff00ff;
         }
 
-        /* VHS Overlay effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
-            pointer-events: none;
-            z-index: 100;
+        #text-ucapan-layout h1 {
+            font-family: 'Press Start 2P', cursive; font-size: 1.5rem;
+            color: #ffff00; text-align: center; line-height: 1.8;
+            text-shadow: 5px 5px #ff00ff; padding: 20px;
         }
 
-        h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.2rem;
-            color: #ffff00;
-            text-align: center;
-            text-shadow: 3px 3px #ff00ff;
-            margin: 20px 0;
-            line-height: 1.6;
+        #main-content {
+            background-image: radial-gradient(circle at 20% 80%, #ff00ff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 50%);
+            overflow-y: auto; display: block; padding: 20px 0;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
-            margin-bottom: 30px;
+        .card-header {
+            font-family: 'Press Start 2P', cursive; font-size: 1rem;
+            color: #ffff00; text-align: center; text-shadow: 3px 3px #ff00ff;
+            margin: 30px 0;
         }
 
-        .media-card {
-            background: #1a1a2e;
+        .birthday-card {
+            background: rgba(26, 26, 46, 0.8);
             border: 4px solid #00ffff;
-            padding: 10px;
-            box-shadow: 10px 10px 0px #ff00ff;
-            transition: transform 0.3s;
+            box-shadow: 15px 15px 0px #ff00ff;
+            width: 90%; max-width: 450px;
+            margin: 0 auto 50px auto;
+            border-radius: 15px; overflow: hidden;
+            position: relative; z-index: 10;
         }
 
-        .media-card:hover { transform: scale(1.02) rotate(1deg); }
-
-        img, video {
-            width: 100%;
-            height: auto;
-            border: 2px solid #fff;
-            display: block;
-        }
+        .swiper { width: 100%; height: 450px; }
+        .swiper-slide { display: flex; justify-content: center; align-items: center; background: #111; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
 
         .message-box {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 2px dashed #ffff00;
-            padding: 25px;
-            max-width: 600px;
+            padding: 25px; margin: 20px;
             text-align: center;
-            margin: 20px;
-            position: relative;
+        }
+        .sweet-words { font-size: 1.1rem; line-height: 1.8; color: #fff; }
+
+        /* --- EFEK HUJAN PARTIKEL --- */
+        #particle-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
+        .particle { position: absolute; animation: fall linear infinite; z-index: 1001; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        .message-box h2 {
-            font-family: 'Press Start 2P';
-            font-size: 0.9rem;
-            color: #00ff00;
-            margin-bottom: 15px;
-        }
-
-        .sweet-words {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #fff;
-            text-shadow: 1px 1px #000;
-        }
-
-        .footer {
-            margin-top: 40px;
-            font-family: 'Press Start 2P';
-            font-size: 0.7rem;
-            color: #ff00ff;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-
-        .deco { position: fixed; font-size: 2rem; z-index: -1; animation: float 5s infinite ease-in-out; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        /* SLIDE AKHIR VIDEO */
+        #final-slide { flex-direction: column; background: #000; position: relative; }
+        #love-photo-group { position: relative; width: 320px; height: 320px; transition: opacity 1s ease 1s; }
+        .love-photo { position: absolute; width: 45px; height: 45px; background-size: cover; border: 2px solid #fff; border-radius: 5px; box-shadow: 0 0 5px rgba(255,0,255,0.5); }
+        #video-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 85%; opacity: 0; transition: all 1s ease 2.5s; z-index: 5; }
+        #final-video { width: 100%; border: 3px solid #ffff00; border-radius: 10px; }
+        #final-slide.active #love-photo-group { opacity: 0; }
+        #final-slide.active #video-container { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     </style>
 </head>
-<body>
+<body class="vhs-effect">
 
-    <div id="overlay">
-        <button id="start-btn" onclick="startExperience()">KLIK UNTUK MULAI ✨</button>
+    <audio id="bgMusic" loop><source src="Laufey - Magnolia Official Audio.mp3" type="audio/mpeg"></audio>
+    <div id="particle-container"></div>
+
+    <div id="start-layout" class="full-screen-layout">
+        <button id="start-btn" onclick="startSequence()">OPEN SURPRISE ✨</button>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="Laufey - Magnolia Official Audio.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="deco" style="top: 10%; left: 5%;">💾</div>
-    <div class="deco" style="top: 20%; right: 10%; animation-delay: 1s;">🎸</div>
-    <div class="deco" style="bottom: 15%; left: 10%; animation-delay: 2s;">🕹️</div>
-
-    <h1>HAPPY 21st BIRTHDAY<br>DIAN PUTRI APSARI! 🎂</h1>
-
-    <div class="gallery">
-        <div class="media-card">
-            <img src="WhatsApp Image 2026-04-07 at 23.42.33.jpeg" alt="Momen Bersama">
-        </div>
-        
-        <div class="media-card">
-            <video controls>
-                <source src="WhatsApp Video 2026-04-07 at 23.53.58.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="media-card">
-            <img src="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg" alt="Dian Putri Apsari">
-        </div>
-
-        <div class="media-card">
-            <video controls>
-                <source src="WhatsApp Video 2026-04-07 at 23.42.20.mp4" type="video/mp4">
-            </video>
-        </div>
+    <div id="countdown-layout" class="full-screen-layout hidden">
+        <div id="countdown-text">3</div>
     </div>
 
-    <div class="message-box">
-        <h2>A Special Message for My Dream Girl 💌</h2>
-        <div class="sweet-words">
-            "Selamat ulang tahun yang ke-21, Sayangku <strong>Dian Putri Apsari</strong>. <br><br>
-            Di hari spesialmu ini, aku cuma mau bilang terima kasih sudah jadi bagian terindah dalam hidupku. 
-            Kamu itu seperti melodi favorit di kaset lama—klasik, tak tergantikan, dan selalu bikin aku bahagia. 
-            Semoga di usia yang baru ini, semua mimpi-mimpimu tercapai, tetap jadi orang yang ceria, 
-            dan semoga kita bisa terus bareng-bareng sampai tua nanti.<br><br>
-            <em>I love you more than all the stars in the sky!</em> 😍💖"
-        </div>
-        <div style="margin-top: 20px; color: #ffff00; font-family: 'Press Start 2P'; font-size: 0.8rem;">
-            - Andi Amrullah Firmansyah
-        </div>
+    <div id="text-ucapan-layout" class="full-screen-layout hidden">
+        <h1>Happy Birthday<br>to Dian Putri Apsari!<br>💖</h1>
     </div>
 
-    <div class="footer">DIBUAT DENGAN CINTA ✨</div>
+    <div id="main-content" class="full-screen-layout hidden">
+        <div class="card-header">Happy Birthday Sayang ❤️</div>
+        <div class="birthday-card">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="WhatsApp Image 2026-04-07 at 23.42.33.jpeg"></div>
+                    <div class="swiper-slide"><img src="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg"></div>
+                    <div class="swiper-slide"><img src="WhatsApp Image 2026-04-07 at 23.42.20.jpeg"></div>
+                    <div class="swiper-slide"><img src="WhatsApp Image 2026-04-07 at 23.42.21.jpeg"></div>
+                    <div class="swiper-slide"><img src="WhatsApp Image 2026-04-07 at 23.42.23.jpeg"></div>
+                    <div class="swiper-slide"><div style="font-size: 7rem; animation: pulse 2s infinite;">💖</div></div>
+                    <div class="swiper-slide" id="final-slide">
+                        <div id="love-photo-group"></div>
+                        <div id="video-container">
+                            <video id="final-video" controls playsinline>
+                                <source src="WhatsApp Video 2026-04-07 at 23.53.58.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="message-box">
+                <div class="sweet-words">
+                    "Selamat ulang tahun yang ke-21, Sayangku <strong>Dian Putri Apsari</strong>. <br><br>
+                    Di hari spesialmu ini, aku cuma mau bilang terima kasih sudah jadi bagian terindah dalam hidupku. 
+                    Kamu itu seperti melodi favorit di kaset lama—klasik, tak tergantikan, dan selalu bikin aku bahagia. 
+                    Semoga di usia yang baru ini, semua mimpi-mimpimu tercapai, tetap jadi orang yang ceria, 
+                    dan semoga kita bisa terus bareng-bareng sampai tua nanti.<br><br>
+                    <em>I love you more than all the stars in the sky!</em> 😍💖"
+                </div>
+                <div style="margin-top: 20px; color: #ffff00; font-family: 'Press Start 2P'; font-size: 0.8rem;">
+                    - Andi Amrullah Firmansyah
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding-bottom: 40px; font-family: 'Press Start 2P'; font-size: 0.6rem; color: #ff00ff;">MADE WITH LOVE ✨</div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        function startExperience() {
-            const music = document.getElementById('bgMusic');
-            music.play();
-            document.getElementById('overlay').style.display = 'none';
+        const bgMusic = document.getElementById('bgMusic');
+        const finalVideo = document.getElementById('final-video');
+        const particleContainer = document.getElementById('particle-container');
+
+        function startSequence() {
+            document.getElementById('start-layout').classList.add('hidden');
+            runCountdown();
+        }
+
+        function runCountdown() {
+            const layout = document.getElementById('countdown-layout');
+            const text = document.getElementById('countdown-text');
+            layout.classList.remove('hidden');
+            let count = 3;
+            const timer = setInterval(() => {
+                count--;
+                if (count > 0) text.innerText = count;
+                else {
+                    clearInterval(timer);
+                    layout.classList.add('hidden');
+                    showTextUcapan();
+                }
+            }, 800);
+        }
+
+        function showTextUcapan() {
+            document.getElementById('text-ucapan-layout').classList.remove('hidden');
+            bgMusic.play();
+            startInfiniteRain();
+
+            setTimeout(() => {
+                document.getElementById('text-ucapan-layout').classList.add('hidden');
+                showMainContent();
+            }, 2500);
+        }
+
+        function showMainContent() {
+            document.getElementById('main-content').classList.remove('hidden');
+            const swiper = new Swiper(".mySwiper", {
+                on: { reachEnd: () => setTimeout(() => document.getElementById('final-slide').classList.add('active'), 500) }
+            });
+            createLovePhotoGrid();
+        }
+
+        finalVideo.onplay = () => { bgMusic.volume = 0.5; }; 
+        finalVideo.onpause = () => { bgMusic.volume = 1.0; };
+        finalVideo.onended = () => { bgMusic.volume = 1.0; };
+
+        function startInfiniteRain() {
+            setInterval(() => {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                
+                const isHeart = Math.random() > 0.4;
+                if (isHeart) {
+                    p.innerHTML = ['❤️', '💖', '💗', '💕', '💝'][Math.floor(Math.random() * 5)];
+                    p.style.fontSize = Math.random() * 20 + 20 + 'px';
+                } else {
+                    p.style.width = '8px';
+                    p.style.height = '12px';
+                    p.style.background = ['#ff00ff', '#00ffff', '#ffff00', '#00ff00'][Math.floor(Math.random() * 4)];
+                    p.style.borderRadius = '2px';
+                }
+
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDuration = Math.random() * 2 + 3 + 's';
+                particleContainer.appendChild(p);
+                
+                setTimeout(() => p.remove(), 5000);
+            }, 180);
+        }
+
+        function createLovePhotoGrid() {
+            const container = document.getElementById('love-photo-group');
+            const photos = [
+                'WhatsApp Image 2026-04-07 at 23.42.33.jpeg', 
+                'WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg', 
+                'WhatsApp Image 2026-04-07 at 23.42.20.jpeg', 
+                'WhatsApp Image 2026-04-07 at 23.42.21.jpeg', 
+                'WhatsApp Image 2026-04-07 at 23.42.23.jpeg'
+            ];
+            
+            // 20 Koordinat untuk bentuk Love yang lebih rapat dan utuh
+            const coords = [
+                {x: 50, y: 25}, {x: 65, y: 15}, {x: 80, y: 15}, {x: 90, y: 25}, {x: 95, y: 40}, 
+                {x: 90, y: 55}, {x: 80, y: 70}, {x: 65, y: 82}, {x: 50, y: 95}, {x: 35, y: 82}, 
+                {x: 20, y: 70}, {x: 10, y: 55}, {x: 5, y: 40}, {x: 10, y: 25}, {x: 20, y: 15}, 
+                {x: 35, y: 15}, {x: 50, y: 25}, // Bagian atas tengah
+                {x: 30, y: 35}, {x: 70, y: 35}, {x: 50, y: 55} // Tambahan isi tengah agar tidak kosong
+            ];
+
+            coords.forEach((c, i) => {
+                const div = document.createElement('div');
+                div.classList.add('love-photo');
+                div.style.backgroundImage = `url('${photos[i % photos.length]}')`;
+                div.style.left = `calc(${c.x}% - 22px)`; 
+                div.style.top = `calc(${c.y}% - 22px)`;
+                // Efek muncul satu per satu
+                div.style.opacity = '0';
+                div.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => { div.style.opacity = '1'; }, i * 100);
+                container.appendChild(div);
+            });
         }
     </script>
-
 </body>
 </html>
