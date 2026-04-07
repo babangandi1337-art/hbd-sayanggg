@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HBD Dian Putri Apsari! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #0a0a0a;
+            background-image: 
+                radial-gradient(circle at 20% 80%, #ff00ff 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 50%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scanline effect untuk gaya Retro */
+        body::after {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            color: #ffff00;
+            text-align: center;
+            text-shadow: 2px 2px #ff00ff;
+            margin: 30px 0;
+            line-height: 1.8;
+            width: 90%;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            max-width: 400px; /* Lebar standar layar HP */
+        }
+
+        .media-card {
+            background: #1a1a2e;
+            border: 3px solid #00ffff;
+            padding: 8px;
+            box-shadow: 8px 8px 0px #ff00ff;
+        }
+
+        img, video {
+            width: 100%;
+            height: auto;
+            border: 1px solid #fff;
+            display: block;
+            border-radius: 2px;
+        }
+
+        .message-box {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 2px dashed #ffff00;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .message-box h2 {
+            font-family: 'Press Start 2P';
+            font-size: 0.7rem;
+            color: #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .sweet-words {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #fff;
+        }
+
+        .signature {
+            margin-top: 25px;
+            color: #ffff00;
+            font-family: 'Press Start 2P';
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            margin: 20px 0 40px 0;
+            font-family: 'Press Start 2P';
+            font-size: 0.5rem;
+            color: #ff00ff;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+        
+        /* Floating Emojis Background */
+        .deco { position: fixed; font-size: 1.5rem; z-index: -1; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <div class="deco" style="top: 5%; left: 10%;">✨</div>
+    <div class="deco" style="top: 15%; right: 10%;">🎂</div>
+    <div class="deco" style="bottom: 20%; left: 5%;">💖</div>
+
+    <h1>HAPPY 21st BIRTHDAY<br>DIAN PUTRI APSARI! 🎈</h1>
+
+    <div class="gallery">
+        <div class="media-card">
+            <img src="WhatsApp Image 2026-04-07 at 23.42.33.jpeg" alt="Together">
+        </div>
+
+        <div class="media-card">
+            <video controls playsinline poster="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg">
+                <source src="WhatsApp Video 2026-04-07 at 23.53.58.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="media-card">
+            <img src="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg" alt="Dian">
+        </div>
+
+        <div class="media-card">
+            <video controls playsinline>
+                <source src="WhatsApp Video 2026-04-07 at 23.42.20.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <h2>A Message for You 💌</h2>
+        <div class="sweet-words">
+            "Selamat ulang tahun yang ke-21, Sayangku <strong>Dian Putri Apsari</strong>. <br><br>
+            Terima kasih sudah jadi bagian terindah dalam hidupku. Kamu itu seperti melodi favorit di kaset lama—klasik, tak tergantikan, dan selalu bikin aku bahagia. <br><br>
+            Semoga semua mimpi-mimpimu tercapai, dan kita bisa terus bareng-bareng sampai tua nanti."
+        </div>
+        <div class="signature">
+            - Andi Amrullah Firmansyah
+        </div>
+    </div>
+
+    <div class="footer">MADE WITH LOVE FOR YOU ✨</div>
+
+</body>
+</html>
