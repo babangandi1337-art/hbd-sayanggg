@@ -2,12 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HBD Dian Putri Apsari! 🎉</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 21st B-DAY Dian Putri Apsari! 🎉</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
         
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Orbitron', sans-serif;
@@ -19,171 +19,180 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px;
+            padding: 20px;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* Musik Player Minimalis di Pojok Atas */
-        .music-container {
+        /* Overlay untuk memulai musik */
+        #overlay {
             position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ffff00;
-            padding: 5px;
-            border-radius: 8px;
-            width: 130px;
-            text-align: center;
-            box-shadow: 0 0 10px #ff00ff;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-        .music-container p {
-            font-family: 'Press Start 2P';
-            font-size: 6px;
-            color: #00ff00;
-            margin-bottom: 5px;
+        #start-btn {
+            font-family: 'Press Start 2P', cursive;
+            padding: 20px;
+            background: #ffff00;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            box-shadow: 5px 5px 0px #ff00ff;
         }
 
-        /* Scanline effect untuk gaya Retro */
-        body::after {
-            content: " ";
+        /* VHS Overlay effect */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 3px 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
             pointer-events: none;
             z-index: 100;
         }
 
         h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             color: #ffff00;
             text-align: center;
-            text-shadow: 2px 2px #ff00ff;
-            margin: 70px 0 30px 0;
-            line-height: 1.8;
-            width: 90%;
+            text-shadow: 3px 3px #ff00ff;
+            margin: 20px 0;
+            line-height: 1.6;
         }
 
         .gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 400px;
+            max-width: 1000px;
+            margin-bottom: 30px;
         }
 
         .media-card {
             background: #1a1a2e;
-            border: 3px solid #00ffff;
-            padding: 8px;
-            box-shadow: 8px 8px 0px #ff00ff;
+            border: 4px solid #00ffff;
+            padding: 10px;
+            box-shadow: 10px 10px 0px #ff00ff;
+            transition: transform 0.3s;
         }
+
+        .media-card:hover { transform: scale(1.02) rotate(1deg); }
 
         img, video {
             width: 100%;
             height: auto;
-            border: 1px solid #fff;
+            border: 2px solid #fff;
             display: block;
-            border-radius: 2px;
         }
 
         .message-box {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border: 2px dashed #ffff00;
-            padding: 20px;
-            width: 100%;
-            max-width: 400px;
+            padding: 25px;
+            max-width: 600px;
             text-align: center;
-            margin: 40px 0;
+            margin: 20px;
+            position: relative;
         }
 
         .message-box h2 {
             font-family: 'Press Start 2P';
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             color: #00ff00;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .sweet-words {
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: #fff;
-        }
-
-        .signature {
-            margin-top: 25px;
-            color: #ffff00;
-            font-family: 'Press Start 2P';
-            font-size: 0.6rem;
-            letter-spacing: 1px;
+            text-shadow: 1px 1px #000;
         }
 
         .footer {
-            margin: 20px 0 40px 0;
+            margin-top: 40px;
             font-family: 'Press Start 2P';
-            font-size: 0.5rem;
+            font-size: 0.7rem;
             color: #ff00ff;
-            animation: blink 1.5s infinite;
+            animation: blink 1s infinite;
         }
 
         @keyframes blink { 50% { opacity: 0; } }
-        
-        .deco { position: fixed; font-size: 1.5rem; z-index: -1; opacity: 0.5; }
+
+        .deco { position: fixed; font-size: 2rem; z-index: -1; animation: float 5s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
     </style>
 </head>
 <body>
 
-    <div class="music-container">
-        <p>🎵 KLIK PLAY</p>
-        <iframe width="100%" height="40" src="https://www.youtube.com/embed/26H76PJWnmA?autoplay=1&loop=1&playlist=26H76PJWnmA" frameborder="0" allow="autoplay"></iframe>
+    <div id="overlay">
+        <button id="start-btn" onclick="startExperience()">KLIK UNTUK MULAI ✨</button>
     </div>
 
-    <div class="deco" style="top: 5%; left: 10%;">✨</div>
-    <div class="deco" style="top: 15%; right: 10%;">🎂</div>
-    <div class="deco" style="bottom: 20%; left: 5%;">💖</div>
+    <audio id="bgMusic" loop>
+        <source src="Laufey - Magnolia Official Audio.mp3" type="audio/mpeg">
+    </audio>
 
-    <h1>HAPPY 21st BIRTHDAY<br>DIAN PUTRI APSARI! 🎈</h1>
+    <div class="deco" style="top: 10%; left: 5%;">💾</div>
+    <div class="deco" style="top: 20%; right: 10%; animation-delay: 1s;">🎸</div>
+    <div class="deco" style="bottom: 15%; left: 10%; animation-delay: 2s;">🕹️</div>
+
+    <h1>HAPPY 21st BIRTHDAY<br>DIAN PUTRI APSARI! 🎂</h1>
 
     <div class="gallery">
         <div class="media-card">
-            <img src="WhatsApp Image 2026-04-07 at 23.42.33.jpeg" alt="Together">
+            <img src="WhatsApp Image 2026-04-07 at 23.42.33.jpeg" alt="Momen Bersama">
         </div>
-
+        
         <div class="media-card">
-            <video controls playsinline poster="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg">
+            <video controls>
                 <source src="WhatsApp Video 2026-04-07 at 23.53.58.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="media-card">
-            <img src="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg" alt="Dian">
+            <img src="WhatsApp Image 2026-04-07 at 23.42.204jpeg.jpeg" alt="Dian Putri Apsari">
         </div>
 
         <div class="media-card">
-            <video controls playsinline>
+            <video controls>
                 <source src="WhatsApp Video 2026-04-07 at 23.42.20.mp4" type="video/mp4">
             </video>
         </div>
     </div>
 
     <div class="message-box">
-        <h2>A Message for You 💌</h2>
+        <h2>A Special Message for My Dream Girl 💌</h2>
         <div class="sweet-words">
             "Selamat ulang tahun yang ke-21, Sayangku <strong>Dian Putri Apsari</strong>. <br><br>
-            Terima kasih sudah jadi bagian terindah dalam hidupku. Kamu itu seperti melodi favorit di kaset lama—klasik, tak tergantikan, dan selalu bikin aku bahagia. <br><br>
-            Semoga semua mimpi-mimpimu tercapai, dan kita bisa terus bareng-bareng sampai tua nanti."
+            Di hari spesialmu ini, aku cuma mau bilang terima kasih sudah jadi bagian terindah dalam hidupku. 
+            Kamu itu seperti melodi favorit di kaset lama—klasik, tak tergantikan, dan selalu bikin aku bahagia. 
+            Semoga di usia yang baru ini, semua mimpi-mimpimu tercapai, tetap jadi orang yang ceria, 
+            dan semoga kita bisa terus bareng-bareng sampai tua nanti.<br><br>
+            <em>I love you more than all the stars in the sky!</em> 😍💖"
         </div>
-        <div class="signature">
+        <div style="margin-top: 20px; color: #ffff00; font-family: 'Press Start 2P'; font-size: 0.8rem;">
             - Andi Amrullah Firmansyah
         </div>
     </div>
 
-    <div class="footer">MADE WITH LOVE FOR YOU ✨</div>
+    <div class="footer">DIBUAT DENGAN CINTA ✨</div>
+
+    <script>
+        function startExperience() {
+            const music = document.getElementById('bgMusic');
+            music.play();
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
